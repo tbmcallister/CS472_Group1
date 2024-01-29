@@ -51,15 +51,33 @@ def countfiles(dictfiles, lsttokens, repo):
                     #also check if the file is actually a source file
                     #scottyab/rootbeer uses c++(.h included), java, c, and kt
                     if "src" in filename and (".cpp" in filename or ".java" in filename or ".c" in filename or ".kt" in filename or ".h" in filename):
-                        dictfiles[filename] = dictfiles.get(filename, 0) + 1
                         print(filename)
 
+                        #also check for the author and add that to the dict
+                        authorsjson = shaDetails['commit']
+                        temp = authorsjson['author']
+                        authorName = temp['name']
+                        print(authorName)
+
+                        #and check for the timestamp
+                        authorsjson = shaDetails['commit']
+                        temp = authorsjson['author']
+                        timestamp = temp['date']
+                        print(timestamp)
+                        
+                        #now add the tuple with (filename, authorname, timestamp)
+                        data = (filename, authorName, timestamp)
+                        # print(data)
+                        dictfiles[data] = dictfiles.get(data, 0) + 1
+
             ipage += 1
-    except:
+    except Exception as e:
+        print(e)
         print("Error receiving data")
         exit(0)
 # GitHub repo
 repo = 'scottyab/rootbeer'
+
 # repo = 'Skyscanner/backpack' # This repo is commit heavy. It takes long to finish executing
 # repo = 'k9mail/k-9' # This repo is commit heavy. It takes long to finish executing
 # repo = 'mendhak/gpslogger'
@@ -80,15 +98,16 @@ print('Total number of files: ' + str(len(dictfiles)))
 file = repo.split('/')[1]
 # change this to the path of your file
 fileOutput = 'data/file_' + file + '.csv'
-rows = ["Filename", "Touches"]
+rows = ["Filename", "Authorname", "Timestamp", "Touches"]
 fileCSV = open(fileOutput, 'w')
 writer = csv.writer(fileCSV)
 writer.writerow(rows)
 
 bigcount = None
 bigfilename = None
-for filename, count in dictfiles.items():
-    rows = [filename, count]
+for data, count in dictfiles.items():
+    filename, authorName, timestamp = data
+    rows = [filename, authorName, timestamp, count]
     writer.writerow(rows)
     if bigcount is None or count > bigcount:
         bigcount = count
