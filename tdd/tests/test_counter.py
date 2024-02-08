@@ -97,10 +97,10 @@ class CounterTest(TestCase):
         # make a call to create a counter
         result = self.client.post(f'/counters/{counterName}')
 
-        # make sure the counter was correctly created
+        # make sure the counter was correctly deleted
         self.assertEqual(result.status_code, status.HTTP_201_CREATED)
 
         result = self.client.delete(f'/counters/{counterName}')
 
-        # make sure the counter was correctly created
+        # make sure the counter was correctly deleted
         self.assertEqual(result.status_code, status.HTTP_204_NO_CONTENT)
