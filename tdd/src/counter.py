@@ -60,6 +60,7 @@ def read_counter(name):
     # if no counter found
     return {"Message": f"Counter {name} does not exist"}, status.HTTP_404_NOT_FOUND
 
+
 # create a route for method DELETE on endpoint /counters/<name>
 # create a function to implement that route
 @app.route('/counters/<name>', methods=['DELETE'])
@@ -75,4 +76,3 @@ def delete_counter(name):
 
     # if no counter found
     return {"Message": f"Counter {name} does not exist"}, status.HTTP_404_NOT_FOUND
-
