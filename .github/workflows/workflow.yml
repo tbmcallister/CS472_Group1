@@ -2,12 +2,8 @@ name: CI workflow
 on:
   workflow_dispatch:
   push:
-    paths:
-    - "tdd"
     branches: [ $main ]
   pull_request:
-    paths:
-    - "tdd"
     branches: [ $main ]
 jobs:
   build:
