@@ -72,7 +72,7 @@ def delete_counter(name):
         # delete the counter
         app.logger.info(f"Deleting counter {name}")
         del COUNTERS[name]
-        return {"Message": f"Counter {name} successfully deleted"}, status.HTTP_204_NO_CONTENT
+        return status.HTTP_204_NO_CONTENT
 
     # if no counter found
     return {"Message": f"Counter {name} does not exist"}, status.HTTP_404_NOT_FOUND
