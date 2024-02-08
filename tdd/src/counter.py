@@ -75,3 +75,4 @@ def delete_counter(name):
 
     # if no counter found
     return {"Message": f"Counter {name} does not exist"}, status.HTTP_404_NOT_FOUND
+
