@@ -1,5 +1,6 @@
 name: CI workflow
 on:
+  workflow_dispatch:
   push:
     paths:
     - "tdd"
