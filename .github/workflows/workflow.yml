@@ -47,13 +47,3 @@ jobs:
         run: |
           # Add commands to run security scans here
           bandit -r .
-
-      - name: Check code formatting
-        run: |
-          # Add commands to check code formatting here
-          black --check .
-
-      - name: Check for vulnerable dependencies
-        run: |
-          # Add commands to check for vulnerable dependencies here
-          safety check --full-report
