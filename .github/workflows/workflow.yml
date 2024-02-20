@@ -44,7 +44,7 @@ jobs:
           nosetests -v --with-spec --spec-color --with-coverage --cover-package=app
 
       - name: Run integration tests
-        working-directory: ./tests
+        working-directory: ./tdd/tests
         run: |
           # Add commands to run integration tests here
           pytest integration_tests.py
